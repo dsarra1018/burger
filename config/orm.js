@@ -18,3 +18,4 @@ let orm = {
     }
 };
 
+module.exports = orm;
