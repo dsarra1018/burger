@@ -6,3 +6,7 @@ const path = require('path');
 
 // create an app
 const app = express();
+
+// Setting port
+const PORT = process.env.PORT || 8080;
+
