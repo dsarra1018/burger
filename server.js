@@ -17,3 +17,8 @@ app.set('view engine', 'handlebars');
 // 'public' folder is user-facing
 app.use(express.static(path.join(__dirname, '/public')));
 
+app.use('/', routes);
+
+app.listen(PORT, () => {
+    console.log("App is listening on PORT " + PORT);
+})
