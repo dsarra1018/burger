@@ -1,3 +1,3 @@
 // Dependencies
-const express = require('express');
+const router = require('express').Router();
 const burgers = require('../models/burger');
