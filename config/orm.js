@@ -33,8 +33,13 @@ function objToSql(ob) {
 
 let orm = {
 
-    selectAll: (table) => {
-        
+    // Show all items on the table
+    selectAll: (table, cb) => {
+        let queryString = 'SELECT * FROM ' + table + ';';
+        connection.query(queryString, (err, res) => {
+            if (err) throw err;
+            cb(res);
+        });
     },
 
     insertOne: function() {
