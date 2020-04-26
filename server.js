@@ -10,6 +10,10 @@ const app = express();
 // Setting port
 const PORT = process.env.PORT || 8080;
 
+// Handle JSON
+app.use(express.urlencoded({extended: true}));
+app.use(express.json());
+
 // Middleware-Rendering Engine: Handlebars
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
