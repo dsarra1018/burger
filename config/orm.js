@@ -43,7 +43,7 @@ let orm = {
     },
 
     // Insert an item into the database
-    insertOne: function(table, cols, vals, cb) {
+    insertOne: (table, cols, vals, cb) => {
         let queryString = 'INSERT INTO' + table;
 
         queryString += ' (';
@@ -61,8 +61,20 @@ let orm = {
         });
     },
 
-    updateOne: function() {
+    // Update an item
+    updateOne: (table, objColVals, condition, cb) => {
+        let queryString = 'UPDATE ' + table;
 
+        queryString += ' SET ';
+        queryString += objToSql(objColVals);
+        queryString += ' WHERE ';
+        queryString += condition;
+
+        console.log(queryString);
+        connection.query(queryString, (err, res) => {
+            if (err) throw err;
+            cb(res);
+        });
     }
 };
 
