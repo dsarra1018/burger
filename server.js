@@ -13,3 +13,7 @@ const PORT = process.env.PORT || 8080;
 // Middleware-Rendering Engine: Handlebars
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+
+// 'public' folder is user-facing
+app.use(express.static(path.join(__dirname, '/public')));
+
