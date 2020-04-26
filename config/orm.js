@@ -1,12 +1,21 @@
 // Dependencies
 const connection = require('./connection');
 
-const tableName = 'burgers';
+// Helper function for SQL syntax.
+function printQuestionMarks(num) {
+    let arr = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        arr.push('?');
+    }
+
+    return arr.toString();
+}
 
 let orm = {
 
-    selectAll: function() {
-
+    selectAll: (table) => {
+        
     },
 
     insertOne: function() {
