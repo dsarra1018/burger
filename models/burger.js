@@ -17,5 +17,10 @@ let burger = {
         });
     },
 
-
-}
+    // Calling updateOne ORM function
+    updateOne: (objColVals, condition, cb) => {
+        orm.updateOne('burgers', objColVals, condition, (res) => {
+            cb(res);
+        });
+    }
+};
