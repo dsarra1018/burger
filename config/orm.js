@@ -42,8 +42,23 @@ let orm = {
         });
     },
 
-    insertOne: function() {
+    // Insert an item into the database
+    insertOne: function(table, cols, vals, cb) {
+        let queryString = 'INSERT INTO' + table;
 
+        queryString += ' (';
+        queryString += cols.toString();
+        queryString += ') ';
+        queryString += 'VALUES (';
+        queryString += printQuestionMarks(vals.length);
+        queryString += ') ';
+
+        console.log(queryString);
+
+        connection,query(queryString, vals, (err, res) => {
+            if (err) throw err;
+            cb(res);
+        });
     },
 
     updateOne: function() {
