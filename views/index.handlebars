@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            <img src="/assets/img/burger.jpg" height="100px" width="150px" alt="A picture of a burger" class="center">
+            <h1>Eat-Da-Burger!</h1>
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            {{#each burgers}}
+                {{#unless this.devoured}}
+                    <div class="card-body">
+                        <div class="row">
+                        <div class="col-md-9"> 
+                            <pre>{{this.id}}. {{this.burger_name}}</pre>
+                        </div>
+                        <div class="col-md-3">
+                            <form class="devour-form button-size">
+                                <input type="hidden" class="burger_id" type="text" value={{this.id}}>
+                                <button type="submit" class="btn btn-sm btn-outline-danger m-1 devour-btn float-right">Devour it!</button>
+                                </input>
+                            </form>
+                        </div>
+                        </div>
+                    </div>
+                {{/unless}}
+            {{/each}}
+        </div>
+
+        <div class="col-md-6">
+            {{#each burgers}}
+                {{#if this.devoured}}
+                    <input class="form-control" type="text" placeholder="{{this.id}} . {{this.burger_name}}" readonly>
+                {{/if}}
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <form action="/burgers/insertOne" method="POST">
+                <input type="text" class="form-control" name="burger_name" value="" id="text-form">
+                    <button type="submit" class="btn btn-lg btn-primary" id="submit-btn">Submit</button>
+                </input>
+            </form>
+            <p>Enter a burger you want to eat. Click the "Submit" button.</p>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
