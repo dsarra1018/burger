@@ -11,15 +11,22 @@ let burger = {
     },
 
     // Calling insertOne ORM function
-    insertOne: (cols, vals, cb) => {
-        orm.insertOne('burgers', cols, vals, (res) => {
+    insertOne: (name, cb) => {
+        orm.insertOne('burgers', [
+            'burger_name', 'devoured'
+        ], [
+            name, false
+        ], (res) => {
             cb(res);
         });
     },
 
     // Calling updateOne ORM function
-    updateOne: (objColVals, condition, cb) => {
-        orm.updateOne('burgers', objColVals, condition, (res) => {
+    updateOne: (id, cb) => {
+        let condition = 'id=' + id;
+        orm.updateOne('burgers', {
+            devoured: true
+        }, condition, (res) => {
             cb(res);
         });
     }
