@@ -44,7 +44,7 @@ let orm = {
 
     // Insert an item into the database
     insertOne: (table, cols, vals, cb) => {
-        let queryString = 'INSERT INTO' + table;
+        let queryString = 'INSERT INTO ' + table;
 
         queryString += ' (';
         queryString += cols.toString();
