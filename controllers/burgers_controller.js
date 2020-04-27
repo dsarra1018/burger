@@ -3,7 +3,11 @@ const router = require('express').Router();
 const burger = require('../models/burger');
 
 // Routes
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
+    res.redirect('/burgers');
+});
+
+router.get("/burgers", (req, res) => {
     burger.selectAll( (data) => {
         let hbsObj = {
             burgers: data
@@ -12,31 +16,18 @@ router.get("/", (req, res) => {
         res.render('index', hbsObj);
     });
 
-router.post('/api/burgers', (req, res) => {
-    burger.insertOne([
-        'burger_name', 'devoured'
-    ], [
-        req.body.burger_name, req.body.devoured
-    ], (result) => {
-        res.json({id: result.insertId});
-    });
+router.post('/burgers/insertOne', (req, res) => {
+    burger.insertOne(req.body.burger_name, (result) => {
+        console.log(result);
+        res.redirect('');
+    })
 });
 
-router.put('/api/burgers/:id', (req, res) => {
-    let condition = 'id = ' + req.params.id;
-
-    console.log('condition', condition);
-
-    burger.updateOne({
-        devoured: req.body.devoured
-    }, condition, (result) => {
-        if (result.changedRows == 0) {
-            return res.status(404).end();
-        }
-        else {
-            res.status(200).end();
-        }
-    });
+router.put('/burgers/:id', (req, res) => {
+    burger.updateOne(req.params.id, (result) => {
+        console.log(result);
+        res.sendStatus(200);
+    })
 });
 });
 
