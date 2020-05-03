@@ -1,6 +1,15 @@
 // Dependencies
 const connection = require('./connection');
 
+function printQuestionMarks(num) {
+    let arr = [];
+
+    for (let i = 0; i < num; i++) {
+        arr.push('?');
+    }
+    return arr.toString();
+}
+
 // Helper function to convert objects key/value pairs to SQL syntax
 function objToSql(ob) {
     let arr = [];
@@ -28,14 +37,22 @@ let orm = {
             cb(res);
         });
     },
+    
+    // Create an item
+    insertOne: (table, cols, vals, cb) => {
+        let queryString = 'INSERT INTO ' + table;
 
-    // Insert an item into the database
-    insertOne: (table, col, val) => {
-        let queryString = 'INSERT INTO ?? (??) VALUES (?)';
-        connection.query(queryString, [table, col, val], (err, res) => {
-            if (err) throw err;
-            console.log(res);
-        });
+        queryString += ' (';
+        queryString += cols.toString();
+        queryString += ') ';
+        queryString += 'VALUES (';
+        queryString += printQuestionMarks(vals.length);
+        queryString += ') ';
+        
+        connection.query(queryString, vals, (err, res) => {
+            if (err) throw (err);
+            cb(res);
+        })
     },
 
     // Update an item
