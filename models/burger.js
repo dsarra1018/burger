@@ -16,9 +16,7 @@ let burger = {
             'burger_name', 'devoured'
         ], [
             name, false
-        ], (res) => {
-            cb(res);
-        });
+        ], cb);
     },
 
     // Calling updateOne ORM function
@@ -26,9 +24,7 @@ let burger = {
         let condition = 'id=' + id;
         orm.updateOne('burgers', {
             devoured: true
-        }, condition, (res) => {
-            cb(res);
-        });
+        }, condition, cb);
     }
 };
 
