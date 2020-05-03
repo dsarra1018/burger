@@ -16,7 +16,10 @@ clone repository to local machine.
 ## Usage
             
 node server.js
-            
+
+or 
+
+https://safe-tor-59253.herokuapp.com/burgers           
             
 ## Contributing
             
